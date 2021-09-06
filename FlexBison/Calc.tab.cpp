@@ -1638,7 +1638,7 @@ int main(void)
 
     yyin = stdin;
     if (yyparse()) {
-        fprintf(stderr, "Error ! Error ! Error !\n");
+        fprintf(stderr, "•s³‚È“ü—Í\n");
         exit(1);
     }
 }
