@@ -23,7 +23,8 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV EXPONENT MOD CR
+%token ADD SUB MUL DIV EXPONENT MOD Sin Cos Tan CR
+%token LP RP
 %type <double_value> expression term primary_expression
 %%
 line_list
@@ -44,6 +45,22 @@ expression
     | expression SUB term
     {
         $$ = $1 - $3;
+    }    
+    | LP expression RP 
+    {
+        $$ = $2;
+    }    
+    | Sin LP expression RP
+    {
+        $$ = sin($3);
+    }
+    | Cos LP expression RP
+    {
+        $$ = cos($3);
+    }
+    | Tan LP expression RP
+    {
+        $$ = tan($3);
     }
     ;
 term

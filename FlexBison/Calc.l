@@ -20,6 +20,11 @@ yywrap(void)
 "/"     return DIV;
 "**"    return EXPONENT;
 "%"     return MOD;
+"("     return LP;
+")"     return RP;
+(sin|SIN)   return Sin;
+(cos|COS)   return Cos;
+(tan|TAN)   return Tan;
 "\n"    return CR;
 [1-9][0-9]* {
     double temp;
