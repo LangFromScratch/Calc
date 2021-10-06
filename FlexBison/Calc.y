@@ -4,6 +4,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define YYDEBUG 1
 
 extern int yylex(void);
@@ -22,7 +23,7 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV CR
+%token ADD SUB MUL DIV EXPONENT CR
 %type <double_value> expression term primary_expression
 %%
 line_list
@@ -54,6 +55,10 @@ term
     | term DIV primary_expression
     {
         $$ = $1 / $3;
+    }
+    | term EXPONENT primary_expression
+    {
+        $$ = pow($1,$3);
     }
     ;
 primary_expression
