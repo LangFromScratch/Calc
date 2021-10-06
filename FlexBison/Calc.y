@@ -6,8 +6,11 @@
 #include <stdlib.h>
 #include <math.h>
 #define YYDEBUG 1
+#define PICONST 3.1415926535897932
 
 extern int yylex(void);
+
+double mcon = PICONST / 180.0;
 
 int
 yyerror(char const *str)
@@ -45,26 +48,10 @@ expression
     | expression SUB term
     {
         $$ = $1 - $3;
-    }    
-    | LP expression RP 
-    {
-        $$ = $2;
-    }    
-    | Sin LP expression RP
-    {
-        $$ = sin($3);
-    }
-    | Cos LP expression RP
-    {
-        $$ = cos($3);
-    }
-    | Tan LP expression RP
-    {
-        $$ = tan($3);
-    }
+    }  
     ;
 term
-    : primary_expression
+    : primary_expression       
     | term MUL primary_expression 
     {
         $$ = $1 * $3;
@@ -84,6 +71,22 @@ term
     ;
 primary_expression
     : DOUBLE_LITERAL
+    | LP expression RP 
+    {
+        $$ = $2;
+    }  
+    | Sin LP expression RP
+    {
+        $$ = sin($3 * mcon);
+    }
+    | Cos LP expression RP
+    {
+        $$ = cos($3 * mcon);
+    }
+    | Tan LP expression RP
+    {
+        $$ = tan($3 * mcon);
+    }
     ;
 %%
 
