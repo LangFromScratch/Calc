@@ -19,7 +19,7 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV CR
+%token ADD SUB MUL DIV MOD CR
 %type <double_value> expression term primary_expression
 %%
 line_list
@@ -51,6 +51,10 @@ term
     | term DIV primary_expression
     {
         $$ = $1 / $3;
+    }
+    | term MOD primary_expression
+    {
+        $$ = ((int)$1) % ((int)$3);
     }
     ;
 primary_expression
