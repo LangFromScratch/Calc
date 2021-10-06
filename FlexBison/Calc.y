@@ -1,4 +1,7 @@
 %{
+/*
+    構文解析を行う為のファイル
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #define YYDEBUG 1

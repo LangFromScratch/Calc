@@ -1,4 +1,7 @@
 %{
+/*
+    字句解析を行う為のファイル
+*/
 #include <stdio.h>
 #include "Calc.tab.h"
 
