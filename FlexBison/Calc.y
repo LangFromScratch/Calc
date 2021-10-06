@@ -26,7 +26,7 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV EXPONENT MOD Sin Cos Tan CR
+%token ADD SUB MUL DIV EXPONENT MOD PI SQRT Sin Cos Tan CR
 %token LP RP
 %type <double_value> expression term primary_expression
 %%
@@ -48,7 +48,19 @@ expression
     | expression SUB term
     {
         $$ = $1 - $3;
+    }
+    | LP expression RP 
+    {
+        $$ = $2;
+    }
+    | PI LP expression RP 
+    {
+        $$ = $3 * 3.141592653589793;
     }  
+    | SQRT LP expression RP
+    {
+        $$ = sqrt($3);
+    }
     ;
 term
     : primary_expression       

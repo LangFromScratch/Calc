@@ -26,6 +26,10 @@ yywrap(void)
 (cos|COS)   return Cos;
 (tan|TAN)   return Tan;
 "\n"    return CR;
+"("     return LP;
+")"     return RP;
+(pi|PI)  return PI;
+(sqrt|SQRT)  return SQRT;
 [1-9][0-9]* {
     double temp;
     sscanf(yytext, "%lf", &temp);
