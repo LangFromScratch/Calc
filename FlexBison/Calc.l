@@ -1,6 +1,6 @@
 %{
 /*
-    字句解析を行う為のファイル
+    蟄怜唱隗｣譫舌ｒ陦後≧轤ｺ縺ｮ繝輔ぃ繧､繝ｫ
 */
 #include <stdio.h>
 #include "Calc.tab.h"
@@ -19,6 +19,7 @@ yywrap(void)
 "*"     return MUL;
 "/"     return DIV;
 "**"    return EXPONENT;
+"%"     return MOD;
 "\n"    return CR;
 [1-9][0-9]* {
     double temp;
