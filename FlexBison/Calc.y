@@ -1,9 +1,10 @@
 %{
 /*
-    構文解析を行う為のファイル
+    讒区枚隗｣譫舌ｒ陦後≧轤ｺ縺ｮ繝輔ぃ繧､繝ｫ
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #define YYDEBUG 1
 
 extern int yylex(void);
@@ -22,7 +23,7 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV MOD CR
+%token ADD SUB MUL DIV EXPONENT MOD CR
 %type <double_value> expression term primary_expression
 %%
 line_list
@@ -55,6 +56,10 @@ term
     {
         $$ = $1 / $3;
     }
+    | term EXPONENT primary_expression
+    {
+        $$ = pow($1,$3);
+    }
     | term MOD primary_expression
     {
         $$ = ((int)$1) % ((int)$3);
@@ -73,7 +78,7 @@ int main(void)
 
     yyin = stdin;
     if (yyparse()) {
-        fprintf(stderr, "不正な入力\n");
+        fprintf(stderr, "荳肴ｭ｣縺ｪ蜈･蜉媾n");
         exit(1);
     }
 }
