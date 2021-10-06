@@ -51,7 +51,9 @@ extern int yydebug;
      SUB = 260,
      MUL = 261,
      DIV = 262,
-     CR = 263
+     EXPONENT = 263,
+     MOD = 264,
+     CR = 265
    };
 #endif
 
@@ -60,14 +62,14 @@ extern int yydebug;
 typedef union YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 17 "Calc.y"
+#line 21 "Calc.y"
 
     int     int_value;
     double  double_value;
 
 
 /* Line 2058 of yacc.c  */
-#line 71 "Calc.tab.h"
+#line 73 "Calc.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
