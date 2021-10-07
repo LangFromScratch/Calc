@@ -20,11 +20,6 @@ yywrap(void)
 "/"     return DIV;
 "**"    return EXPONENT;
 "%"     return MOD;
-"("     return LP;
-")"     return RP;
-(sin|SIN)   return Sin;
-(cos|COS)   return Cos;
-(tan|TAN)   return Tan;
 "\n"    return CR;
 "("     return LP;
 ")"     return RP;
