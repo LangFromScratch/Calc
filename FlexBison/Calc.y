@@ -6,8 +6,11 @@
 #include <stdlib.h>
 #include <math.h>
 #define YYDEBUG 1
+#define PICONST 3.141592653589793
 
 extern int yylex(void);
+
+double mcon = PICONST / 180.0;
 
 int
 yyerror(char const *str)
@@ -23,7 +26,8 @@ yyerror(char const *str)
     double  double_value;
 }
 %token <double_value>    DOUBLE_LITERAL
-%token ADD SUB MUL DIV EXPONENT MOD CR
+%token ADD SUB MUL DIV EXPONENT MOD PI SQRT Sin Cos Tan CR
+%token LP RP
 %type <double_value> expression term primary_expression
 %%
 line_list
@@ -45,10 +49,18 @@ expression
     {
         $$ = $1 - $3;
     }
+    | PI LP expression RP
+    {
+        $$ = $3 * PICONST;
+    }
+    | SQRT LP expression RP
+    {
+        $$ = sqrt($3);
+    }
     ;
 term
     : primary_expression
-    | term MUL primary_expression 
+    | term MUL primary_expression
     {
         $$ = $1 * $3;
     }
@@ -67,6 +79,22 @@ term
     ;
 primary_expression
     : DOUBLE_LITERAL
+    | LP expression RP
+    {
+        $$ = $2;
+    }
+    | Sin LP expression RP
+    {
+        $$ = sin($3 * mcon);
+    }
+    | Cos LP expression RP
+    {
+        $$ = cos($3 * mcon);
+    }
+    | Tan LP expression RP
+    {
+        $$ = tan($3 * mcon);
+    }
     ;
 %%
 

@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# リビルド時の生成されるファイル
+FlexBison/Calc.flex.cpp
+FlexBison/Calc.tab.cpp
+FlexBison/Calc.tab.h
