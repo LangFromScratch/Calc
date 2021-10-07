@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #define YYDEBUG 1
-#define PICONST 3.1415926535897932
+#define PICONST 3.141592653589793
 
 extern int yylex(void);
 
@@ -49,22 +49,18 @@ expression
     {
         $$ = $1 - $3;
     }
-    | LP expression RP 
-    {
-        $$ = $2;
-    }
-    | PI LP expression RP 
+    | PI LP expression RP
     {
         $$ = $3 * 3.141592653589793;
-    }  
+    }
     | SQRT LP expression RP
     {
         $$ = sqrt($3);
     }
     ;
 term
-    : primary_expression       
-    | term MUL primary_expression 
+    : primary_expression
+    | term MUL primary_expression
     {
         $$ = $1 * $3;
     }
@@ -83,10 +79,10 @@ term
     ;
 primary_expression
     : DOUBLE_LITERAL
-    | LP expression RP 
+    | LP expression RP
     {
         $$ = $2;
-    }  
+    }
     | Sin LP expression RP
     {
         $$ = sin($3 * mcon);
