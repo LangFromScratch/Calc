@@ -51,7 +51,7 @@ expression
     }
     | PI LP expression RP
     {
-        $$ = $3 * 3.141592653589793;
+        $$ = $3 * PICONST;
     }
     | SQRT LP expression RP
     {
